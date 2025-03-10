@@ -1,0 +1,347 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.nav:link{
+  color: #fefae0;
+  text-decoration: none;
+}
+
+.nav:visited{
+  color: #fefae0;
+}
+
+.nav:hover{
+  color: #d2dcc7;
+}
+
+.navbar{
+  display: flex;
+  flex-direction:row;
+  background-color:#152d01;
+  height: 15%; 
+  width:100%;
+
+  font-family: 'Ki-Light';
+  font-weight: 1000;
+  font-style: normal;
+}
+
+.navButton:hover {
+  color:#fefae0;
+  background-color:#152d01;
+  cursor: pointer;
+}
+
+.navButtons {
+  font-size: 20px;
+  background-color:#152d01;
+  border:none;
+  margin-top: 30px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+
+  font-family: 'Ki-Light';
+  font-weight: 1000;
+  font-style: normal;
+
+}
+
+.btn{
+  font-size: 20px;
+  color: #fefae0;
+  background-color:#152d01;
+  border:none;
+  padding-left: 15px;
+  margin-top: 15px;
+
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+.title {
+  border: 1px;
+  border-radius:1px;
+  padding-left: 15px;
+  background-color:#152d01;
+  font-size:32px;
+
+  font-family: 'Ki-Light';
+  font-weight: 1000;
+  font-style: normal;
+}
+
+iframe{
+  width: 100%;
+  height: 500px;
+}
+
+.statPara{
+  margin-left: 80px;
+  margin-right: 80px;
+  text-align: center;
+
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.stat{
+  text-align: center;
+  
+  font-family: "Merriweather", serif;
+  font-weight: 2000;
+  font-style: normal;
+}
+
+.statTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 80px;
+  margin-right: 80px;
+  text-align: center;
+  color:#254a08;
+
+  font-family: 'Ki-Light';
+  font-weight: 1000;
+  font-style: normal;
+}
+
+.statSection{
+  display: flex;
+  flex-direction: column;
+}
+
+.source{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Ki-Light';
+  font-weight: 1000;
+  font-style: normal;
+}
+
+.learnMoreLink a{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4a734a;
+  color: #fefae0;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.learnMoreLink a:hover{
+  background-color: #649664;
+  color: #fefae0;
+  text-decoration: none;
+}
+
+.learnMoreLink:visited{
+  background-color: #649664;
+  color: #fefae0;
+  text-decoration: none;
+}
+
+/* font code start */
+.merriweather-light {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.merriweather-regular {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.merriweather-black {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.merriweather-light-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.merriweather-regular-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.merriweather-bold-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.merriweather-black-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* font code end */
+
+@font-face {
+    font-family: 'Ki-Light';
+    src: url('Mint Type - Ki-Light.otf') format('opentype');
+}
+
+.recyclingBtn{
+  font-size: 20px;
+  color: #fefae0;
+  background-color:#152d01;
+  border:none;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+.recyclingBtn:hover{
+  cursor: pointer;
+}
+
+.homeStat{
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  background-color: #4a734a;
+  color: #fefae0;
+  padding: 45px;
+  border-radius: 5em;
+  margin: 5px;
+  margin-bottom: -50px;
+
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.homeStatSection{
+  display: flex;
+  margin-top:40px;  
+}
+
+.homeImage{
+  height:20em;
+  width:35em;
+  padding: 10px;
+}
+
+.homeImageSection{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.recyclingIframeDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#recyclingIframe{
+  width: 80%;
+  height: 20em;
+}
+
+.recyclingDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/******* reddit code start *******/
+#customImageSlider1 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 25%; /* Adjust this value according to your image aspect ratio */
+}
+
+
+.slider-before,
+.slider-after {
+  position: absolute;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-after {
+  overflow: hidden;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background-color: #fff;
+  cursor: ew-resize;
+}
+
+.slider-handle::before,
+.slider-handle::after {
+content: "";
+position: absolute;
+top: 50%;
+width: 0;
+height: 0;
+border-top: 12px solid transparent;
+border-bottom: 12px solid transparent;
+cursor: ew-resize;
+transition: all 0.2s ease-out; /* Add transition property */
+}
+
+.slider-handle::before {
+left: -24px;
+border-right: 16px solid #fff;
+}
+
+.slider-handle::after {
+right: -24px;
+border-left: 16px solid #fff;
+}
+
+/* reddit code end */

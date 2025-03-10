@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Swift Sustainability | Recycling </title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- nav bar start -->
+  <div1 class="navbar">
+    <h1 class="title"> <a href="/index.html" class="nav"> Swift Sustainability </a></h1>
+
+    <div class="btn">
+      <button class="btn"> <a href="/recycling.html" class="nav"> Recycling </a> </button>
+      <button class="btn"> <a href="/recipes.html" class="nav"> Recipes </a> </button>
+      <button class="btn"> <a href="/footprint.html" class="nav"> Carbon Footprint </a> </button>
+      <button class="btn"> <a href="/learnmore.html" class="nav"> Learn More </a> </button>
+    </div>
+
+  </div1>
+<!-- nav bar end -->
+
+<!-- Recycling Information -->
+
+  <div class = statSection>
+    <h1 class = "statTitle"> The Problem </h1>
+    <h1 class = "stat"> 76% of Residential Recyclables are lost at the household level.</h1> 
+    <h5 class = source> Source:  <a href= https://recyclingpartnership.org/residential-recycling-report/> The Recycling Partnership </a></h5>
+  </div>
+
+  <div class = Solution>
+    <h1 class = "statTitle"> Our Solution</h1>
+      <p class = "statPara"> With this section of our website, we aim to make recycling information more accessible to households to increase the residential rate of recycling.</p>
+      <p class = "statPara"> Using Google's Teachable Machine, and a 15,000 <a href= https://www.kaggle.com/datasets/mostafaabla/garbage-classification/data> Kaggle Image Dataset</a> with 12 classes of various items, including paper, batteries, and plastics, anybody with a phone and camera can capture an image of any item and see if it is recyclable in their area. </p>
+      <p class = statPara> To start, simply press the "Start" button below. When your object is in frame, press the "Capture" button to see the AI Model's prediction of what the object is. Afterwards, enter your ZIP Code and find resources to see where your items are recyclable. </p>
+  </div>
+
+  
+<div class = "recyclingDiv">
+<!-- teachable machine code start -->
+<div>
+  <h1 class=statTitle>Recycling Classifier</h1>
+  <button type="button" onclick="init()" class = recyclingBtn>Start</button>
+  <button type="button" onclick="predict()" class = recyclingBtn>Capture</button>
+  <div id="webcam-container"></div>
+  <div id="label-container"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script type="text/javascript">
+      // More API functions here:
+      // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+      // the link to your model provided by Teachable Machine export panel
+      const URL = "https://teachablemachine.withgoogle.com/models/yr0jDy5n0/";
+
+      let model, webcam, labelContainer, maxPredictions;
+      let capturedPrediction = {};
+      let predictionsList = [];
+      let uniqueClasses = new Set();
+      let uniqueClassesString = ""
+
+      // Load the image model and setup the webcam
+      async function init() {
+          const modelURL = URL + "model.json";
+          const metadataURL = URL + "metadata.json";
+
+          // load the model and metadata
+          // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+          // or files from your local hard drive
+          // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+          model = await tmImage.load(modelURL, metadataURL);
+          maxPredictions = model.getTotalClasses();
+
+          // Convenience function to setup a webcam
+          const flip = true; // whether to flip the webcam
+          webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+          await webcam.setup(); // request access to the webcam
+          await webcam.play();
+          window.requestAnimationFrame(loop);
+
+          // append elements to the DOM
+          document.getElementById("webcam-container").innerHTML = "";
+          document.getElementById("webcam-container").appendChild(webcam.canvas);
+        
+          labelContainer = document.getElementById("label-container");
+          labelContainer.innerHTML = "";
+          for (let i = 0; i < maxPredictions; i++) { // and class labels
+            labelContainer.appendChild(document.createElement("div"));
+          }
+      }
+    
+        async function loop() {
+            webcam.update(); // Continuously update the webcam frame
+            window.requestAnimationFrame(loop); // Keep looping
+        }
+    
+      async function predict() {
+          if (!model || !webcam) {
+            alert("Please start the webcam first before capturing!");
+            return;
+          }
+          // predict can take in an image, video or canvas html element
+          const prediction = await model.predict(webcam.canvas);
+        
+          let highestPrediction = prediction.reduce((max, current) => 
+            current.probability > max.probability ? current : max
+          );
+
+          uniqueClasses.add(highestPrediction.className);
+        
+          updateUniqueClassesString();
+        
+          let capturedPrediction = {
+            className: highestPrediction.className,
+            probability: highestPrediction.probability.toFixed(2)
+          };
+
+        predictionsList.push(capturedPrediction);
+        
+        labelContainer.innerHTML = `${capturedPrediction.className}: ${capturedPrediction.probability}`;
+
+        function getUniqueClasses() {
+            return [...new Set(predictionsList.map(prediction => prediction.className))];
+        }
+        console.log("Saved Predictions:", predictionsList);
+        console.log("Unique Classes String:", uniqueClassesString);
+      }
+    
+      function updateUniqueClassesString() {
+      uniqueClassesString = Array.from(uniqueClasses).join("%2C"); //separates classes with a comma when inserted into a url 
+      }
+  
+  </script>
+  <!-- teachable machine code end -->
+
+  <p class=statPara> To get information about where to recycle your captured items, please enter your ZIP Code below: </p>
+  
+  <form id="zipcodeForm">
+    <label for="zipcode" class=statPara>Enter your ZIP Code:</label>
+    <input type="text" id="zipcode" name="zipcode" maxlength="5" required>
+    <button type="submit"class = recyclingBtn>Submit</button>
+  </form>
+
+</div>
+  <br>
+  <br>
+</div>
+
+  <div class = recyclingIframeDiv>
+  <iframe id="recyclingIframe"> </iframe>
+  </div>
+  
+  <script> // waits for submit button then runs this code, gets zipcode value and uses the materials from the prev. capture and puts it in an url that gets displayed in an iframe above
+    let userZipCode = ""; // variable to store ZIP code
+    const recyclingURL = "https://search.earth911.com/?what={materials}&where={location}&list_filter=all&max_distance=25"
+    updateUniqueClassesString();
+    document.getElementById("zipcodeForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      userZipCode = document.getElementById("zipcode").value;
+      finalURL = recyclingURL.replace('{materials}', uniqueClassesString).replace('{location}', userZipCode);
+        document.getElementById("recyclingIframe").src = finalURL;      
+      console.log(finalURL);
+    });
+  </script>
+ 
+
+
+</body>
+
+</html>

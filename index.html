@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- nav bar start -->
+    <div1 class="navbar">
+      <h1 class="title"> <a href="/index.html" class="nav"> Swift Sustainability </a></h1>
+
+      <div class="btn">
+        <button class="btn"> <a href="/recycling.html" class="nav"> Recycling </a> </button>
+        <button class="btn"> <a href="/recipes.html" class="nav"> Recipes </a> </button>
+        <button class="btn"> <a href="/footprint.html" class="nav"> Carbon Footprint </a> </button>
+        <button class="btn"> <a href="/learnmore.html" class="nav"> Learn More </a> </button>
+      </div>
+
+    </div1>
+  <!-- nav bar end -->
+<br>
+  <script src="https://climateclock.world/widget-v1.js" async></script>
+  <climate-clock /> </climate-clock>
+
+<div class = homeStatSection>
+  <h1 class = homeStat> 
+  2024 was the hottest year ever recorded.
+</h1> 
+
+  <h1 class = homeStat> 
+    Climate change may cause 250,000 deaths per year by 2050.
+  </h1> 
+
+  <h1 class = homeStat> 
+    Arctic sea ice has shrunk by 40% since 1979.
+  </h1> 
+
+  <h1 class = homeStat> 
+    We emit 49 billion tons of CO₂ yearly.
+  </h1> 
+
+  <h1 class = homeStat> 
+    By 2050, climate change could displace 143 million.
+  </h1> 
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br> 
+  
+<h1 class = "statTitle"> How do we mitigate the harmful effects of climate change?</h1>
+
+<p class = "statPara"> There's no secret that major corporations are responsible for their drastic contributions to accelerating climate change. As a result, many people tend to believe that they cannot help mitigate their own contributions. However, there are many actions that individuals can take to create a greener Planet Earth.</p>
+  
+<p class = "statPara"> At Swift Sustainability, we believe everybody deserves easy access to sustainaility tools. We have designed our website to contain three useful elements: a recycling classifier, recipes to prevent food waste, and a carbon footprint calculator. With these tools, anybody can educate themselves on proper recycling techniques, food waste prevention, and smarter lifestyle choices, that will all positively contribute to the environment. </p>
+
+<p class = "statPara"> For useful widgets and infographics, scroll down! Otherwise, feel free to navigate our website and check out its tools.</p>
+  
+
+  <script src="https://co2widget.com/build/widget.min.js" defer></script>
+  <div id="czw" class="czw"></div>
+
+
+  <style>
+    .slider-before, .slider-after {
+      user-select: none;
+    }
+  </style>
+
+<h1 class = statTitle> Use the slider below to see the effects of climate change on McCarty Glacier in Alaska. </h1>  
+
+  
+  <div class="custom-image-slider" id="customImageSlider1">
+    <img class="slider-before" src="Screen-Shot-2021-03-01-at-11.24.53-AM.webp" alt="Before">
+    <img class="slider-after" src="Screen-Shot-2021-03-01-at-11.24.45-AM.webp" alt="After">
+    <div class="slider-handle"></div>
+  </div>
+<br>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.querySelector(".custom-image-slider");
+      const afterImage = document.querySelector(".slider-after");
+      const handle = document.querySelector(".slider-handle");
+
+      // Set initial handle position and clipPath
+      const initialPercentage = 50;
+      handle.style.left = `${initialPercentage}%`;
+      afterImage.style.clipPath = `inset(0 ${100 - initialPercentage}% 0 0)`;
+
+      let dragging = false;
+      let lastX = 0;
+
+      // Add mouse event listeners
+      handle.addEventListener("mousedown", (e) => {
+        dragging = true;
+        lastX = e.clientX;
+        e.preventDefault();
+      });
+
+      document.addEventListener("mouseup", () => {
+        dragging = false;
+      });
+
+      document.addEventListener("mouseleave", () => {
+        dragging = false;
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        let widthPercentage = (x / rect.width) * 100;
+
+        // Add constraint to keep the handle within 1% of either edge
+        widthPercentage = Math.max(0, Math.min(widthPercentage, 100));
+
+        // Update handle position using requestAnimationFrame
+        window.requestAnimationFrame(() => {
+          handle.style.left = `${widthPercentage}%`;
+          afterImage.style.clipPath = `inset(0 ${100 - widthPercentage}% 0 0)`;
+        });
+
+        lastX = x;
+      });
+
+      // Add touch event listeners
+      handle.addEventListener("touchstart", (e) => {
+        dragging = true;
+        lastX = e.touches[0].clientX;
+        e.preventDefault();
+      });
+
+      document.addEventListener("touchend", () => {
+        dragging = false;
+      });
+
+      container.addEventListener("touchcancel", () => {
+        dragging = false;
+      });
+
+      container.addEventListener("touchmove", (e) => {
+        if (!dragging) return;
+
+        const rect = container.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        let widthPercentage = (x / rect.width) * 100;
+
+        // Add constraint to keep the handle within 1% of either edge
+        widthPercentage = Math.max(0, Math.min(widthPercentage, 100));
+
+        // Update handle position using requestAnimationFrame
+        window.requestAnimationFrame(() => {
+          handle.style.left = `${widthPercentage}%`;
+          afterImage.style.clipPath = `inset(0 ${100 - widthPercentage}% 0 0)`;
+          });
+
+        lastX = x;
+      });
+  });
+  </script>
+
+
+    
+</body>
+
+</html>
